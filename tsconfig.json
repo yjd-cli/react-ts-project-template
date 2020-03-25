@@ -1,0 +1,69 @@
+{
+    "compilerOptions": {
+        /* 开启增量编译：TS 编译器在第一次编译的时候，会生成一个存储编译信息的文件，下一次编译的时候，会根据这个文件进行增量的编译，以此提高 TS 的编译速度 */
+        //        "incremental": true,
+        // 指定存储增量编译信息的文件位置
+        //        "tsBuildInfoFile": "./",
+        // 显示诊断信息
+        //        "diagnostics": true,
+        /* 指定模块代码的生成方式: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
+        //        "module": "commonjs",
+        /* 指定 ECMAScript 的目标版本: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019' or 'ESNEXT'. */
+        "target": "es5",
+        /* react 模式下：直接将 JSX 编译成 JS，会生成 React.createElement 的形式，在使用前不需要再进行转换操作了，输出文件的扩展名为 .js */
+        /* preserve 模式下：不会将 JSX 编译成 JS，生成代码中会保留 JSX，以供后续的转换操作使用（比如：Babel）。 另外，输出文件会带有 .jsx 扩展名 */
+        /* react-native 模式下：相当于 preserve，它也保留了所有的 JSX，但是输出文件的扩展名是 .js */
+        "jsx": "react",
+        // 允许编译 JS 文件
+        "allowJs": true,
+        // 检查 JS 文件
+        "checkJs": true,
+        // 开启所有的严格检查配置
+        "strict": true,
+        // 不允许使用隐式的 any 类型
+        "noImplicitAny": false,
+        // 不允许 this 有隐式的 any 类型，即 this 必须有明确的指向
+        "noImplicitThis": false,
+        // 不允许把 null、undefined 赋值给其他类型变量
+        "strictNullChecks": false,
+        // 不生成文件，只做类型检查
+        "noEmit": true,
+        // 生成目标文件的 sourceMap
+        // "sourceMap": true,
+        // 允许 export = xxx 导出 ，并使用 import xxx form "module-name" 导入
+        "esModuleInterop": true,
+        /* 当没有默认导出的时候允许默认导入，这个在代码执行的时候没有作用，只是在类型检查的时候生效 */
+        "allowSyntheticDefaultImports": true,
+        /* 当目标是ES5或ES3的时候提供对for-of、扩展运算符和解构赋值中对于迭代器的完整支持 */
+        "downlevelIteration": true,
+        // 启用装饰器
+        "experimentalDecorators": true,
+        // 制定模块解析策略
+        "moduleResolution": "node",
+        /* 指定要包含在编译中的库文件——引用类库——即申明文件，如果输出的模块方式是 es5，就会默认引入 "dom","es5","scripthost" 。如果在 TS 中想要使用一些 ES6 以上版本的语法，就需要引入相关的类库 */
+        "lib": ["es5", "es6", "es7", "esnext", "dom", "dom.iterable", "scripthost"],
+        // 在解析非绝对路径模块名的时候的基准路径
+        "baseUrl": "./",
+        "paths": {
+            /*路径映射的集合*/
+            "@public/*": ["public/*"],
+            "@src/*": ["src/*"],
+            "@assets/*": ["src/assets/*"],
+            "@styles/*": ["src/assets/styles/*"],
+            "@common/*": ["src/common/*"],
+            "@components/*": ["src/components/*"],
+            "@library/*": ["src/library/*"],
+            "@routes/*": ["src/routes/*"],
+            "@store/*": ["src/store/*"],
+            "@server/*": ["src/server/*"],
+            "@api/*": ["src/server/api/*"],
+            "@utils/*": ["src/utils/*"]
+        }
+    },
+    // 指定需要编译的文件/目录，只写一个目录名 dirname 等价于 "./dirname/**/*"
+    "include": [
+        "src"
+        //        "./src/**/*"
+    ],
+    "exclude": ["node_modules", "build"]
+}

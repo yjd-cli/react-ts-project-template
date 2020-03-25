@@ -1,0 +1,6 @@
+dist/
+build/
+.prettierignore
+.gitignore
+.eslintignore
+

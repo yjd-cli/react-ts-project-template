@@ -1,0 +1,68 @@
+.scrollbar(@width,@height) {
+    &::-webkit-scrollbar {
+        width: @width;
+        height: @height;
+        //border-top-right-radius: 6px;
+    }
+    &::-webkit-scrollbar-track {
+        //-webkit-box-shadow: inset 0 0 6px #898989;
+        //border-radius: 10px;
+        //border-top-right-radius: 6px;
+    }
+    &::-webkit-scrollbar-thumb {
+        width: @width;
+        height: @height;
+        //border-radius: 10px;
+        //border-top-right-radius: 6px;
+        -webkit-box-shadow: inset 0 0 6px #898989;
+        background-color: #cccaca;
+    }
+}
+
+.text-overflow() {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+// 出现禁止点击图标
+.disable {
+    // 只是出现一个禁止图标，不会禁止事件
+    cursor: not-allowed !important;
+    color: #d2d2d2 !important;
+}
+
+// 禁止点击事件
+.disabled-ce {
+    pointer-events: none !important;
+    cursor: default !important;
+    color: #888 !important;
+}
+
+// 清楚浮动
+.clear-fix() {
+    &:after {
+        content: '';
+        display: block;
+        height: 0;
+        font-size: 0;
+        clear: both;
+        visibility: hidden;
+    }
+}
+
+.visibility-hide {
+    visibility: hidden !important;
+}
+
+.visibility-show {
+    visibility: visible !important;
+}
+
+.hide {
+    display: none !important;
+}
+
+.show {
+    display: block !important;
+}
