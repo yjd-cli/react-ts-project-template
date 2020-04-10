@@ -1,4 +1,4 @@
-import styles from './register.less';
+import styles from './register.module.less';
 import logo from '@assets/images/logo.svg';
 import React from 'react';
 import { RouteComponentProps } from 'react-router';

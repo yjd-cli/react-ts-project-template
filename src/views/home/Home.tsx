@@ -1,4 +1,4 @@
-import styles from './home.less';
+import styles from './home.module.less';
 import logo from '@assets/images/logo.svg';
 import React from 'react';
 import { renderAllRoutes } from '@routes/route-loader';

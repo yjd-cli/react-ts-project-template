@@ -8,6 +8,7 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const baseConfig = require('./webpack.base.config');
+const styleRegex = require('./style.regex.config');
 
 module.exports = smart(baseConfig, {
     mode: 'production',
@@ -21,11 +22,30 @@ module.exports = smart(baseConfig, {
     module: {
         rules: [
             {
-                test: /\.css$/,
+                test: styleRegex.cssRegex,
+                exclude: [styleRegex.cssModuleRegex],
                 use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
             },
             {
-                test: /\.less$/,
+                test: styleRegex.cssModuleRegex,
+                use: [MiniCssExtractPlugin.loader, {
+                    loader: 'css-loader',
+                    options: {
+                        importLoaders: 2,
+                        localsConvention: 'camelCase',
+                        modules: {
+                            localIdentName: '[name]__[local]--[hash:base64:5]'
+                        },
+                    }
+                }, 'postcss-loader'],
+            },
+            {
+                test: styleRegex.lessRegex,
+                exclude: [styleRegex.lessModuleRegex],
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'less-loader']
+            },
+            {
+                test: styleRegex.lessModuleRegex,
                 use: [MiniCssExtractPlugin.loader, {
                     loader: 'css-loader',
                     options: {

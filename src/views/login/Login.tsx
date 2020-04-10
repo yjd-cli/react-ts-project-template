@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './login.less';
+import styles from './login.module.less';
 import logo from '@assets/images/logo.svg';
 import GlobalContext from '@src/common/global-context';
 import { RouteComponentProps } from 'react-router';
