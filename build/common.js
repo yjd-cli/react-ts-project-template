@@ -69,7 +69,7 @@ const getStyleLoaders = (options) => {
             test: styleRegex.cssRegex,
             exclude: [styleRegex.cssModuleRegex],
             // exclude: /node_modules/,
-            use: getBaseStyleLoaders({cssModule: options.cssModule}),
+            use: getBaseStyleLoaders(),
         },
         {
             test: styleRegex.cssModuleRegex,
@@ -78,7 +78,7 @@ const getStyleLoaders = (options) => {
         {
             test: styleRegex.lessRegex,
             exclude: [styleRegex.lessModuleRegex],
-            use: getBaseStyleLoaders({cssModule: options.cssModule}, 'less-loader'),
+            use: getBaseStyleLoaders(null, 'less-loader'),
         },
         {
             test: styleRegex.lessModuleRegex,
@@ -87,7 +87,7 @@ const getStyleLoaders = (options) => {
         {
             test: styleRegex.sassRegex,
             exclude: [styleRegex.sassModuleRegex],
-            use: getBaseStyleLoaders({cssModule: options.cssModule}, 'sass-loader'),
+            use: getBaseStyleLoaders(null, 'sass-loader'),
         },
         {
             test: styleRegex.sassModuleRegex,
