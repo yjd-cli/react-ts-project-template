@@ -78,7 +78,7 @@ react-ts-project-template
 
 - 项目中引入了 `Normalize.css `
 
-- 项目默认支持 CSS 模块化
+- 项目默认支持 CSS 模块化（xxx.module.css/xxx.module.less/.xxx.module.scss 这些文件会默认 CSS 模块化 处理）
 
 - 构建项目时会自动兼容 CSS3 样式，所以不需要自己去写浏览器兼容样式
 

@@ -7,6 +7,10 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 // const manifestJson = require('../public/dll/dllLibs.manifest.json');
 const common = require('./common');
 
+const styleLoaders = common.getStyleLoaders({
+    cssModule: true,
+});
+
 module.exports = smart(baseConfig, {
     mode: 'development',
     // devtool: 'cheap-module-eval-source-map',
@@ -18,36 +22,7 @@ module.exports = smart(baseConfig, {
         publicPath: '/',
     },
     module: {
-        rules: [
-            {
-                test: common.styleRegex.cssRegex,
-                exclude: [common.styleRegex.cssModuleRegex],
-                // exclude: /node_modules/,
-                use: common.getStyleLoaders(),
-            },
-            {
-                test: common.styleRegex.cssModuleRegex,
-                use: common.getStyleLoaders({CssModule: true}),
-            },
-            {
-                test: common.styleRegex.lessRegex,
-                exclude: [common.styleRegex.lessModuleRegex],
-                use: common.getStyleLoaders(null,'less-loader'),
-            },
-            {
-                test: common.styleRegex.lessModuleRegex,
-                use: common.getStyleLoaders({CssModule: true},'less-loader'),
-            },
-            {
-                test: common.styleRegex.sassRegex,
-                exclude: [common.styleRegex.sassModuleRegex],
-                use: common.getStyleLoaders(null,'less-loader'),
-            },
-            {
-                test: common.styleRegex.sassModuleRegex,
-                use: common.getStyleLoaders({CssModule: true},'less-loader'),
-            }
-        ],
+        rules: [].concat(styleLoaders),
     },
     plugins: [
         new FriendlyErrorsPlugin(),

@@ -9,6 +9,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const baseConfig = require('./webpack.base.config');
 const common = require('./common');
+const styleLoaders = common.getStyleLoaders({
+    cssModule: true,
+});
 
 module.exports = smart(baseConfig, {
     mode: 'production',
@@ -20,36 +23,7 @@ module.exports = smart(baseConfig, {
         publicPath: '/',
     },
     module: {
-        rules: [
-            {
-                test: common.styleRegex.cssRegex,
-                exclude: [common.styleRegex.cssModuleRegex],
-                use: common.getStyleLoaders(),
-            },
-            {
-                test: common.styleRegex.cssModuleRegex,
-                use: common.getStyleLoaders({CssModule:true}),
-            },
-            {
-                test: common.styleRegex.lessRegex,
-                exclude: [common.styleRegex.lessModuleRegex],
-                // use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'less-loader']
-                use: common.getStyleLoaders(null,'less-loader'),
-            },
-            {
-                test: common.styleRegex.lessModuleRegex,
-                use: common.getStyleLoaders({CssModule:true},'less-loader'),
-            },
-            {
-                test: common.styleRegex.sassRegex,
-                exclude: [common.styleRegex.sassModuleRegex],
-                use: common.getStyleLoaders(null,'less-loader'),
-            },
-            {
-                test: common.styleRegex.sassModuleRegex,
-                use: common.getStyleLoaders({CssModule: true},'less-loader'),
-            }
-        ],
+        rules: [].concat(styleLoaders),
     },
     plugins: [
         new CopyWebpackPlugin([

@@ -27,20 +27,20 @@ const styleRegex = {
 
 
 /**
- * common function to get style loaders
+ * function to get style loaders
  * @param options
  * @param preProcessor
  */
-const getStyleLoaders = (options, preProcessor) => {
+const getBaseStyleLoaders = (options, preProcessor) => {
     options = options ? options : {
-        CssModule: false
+        cssModule: false
     };
     const loaders = [
         webpackEnv.isEnvDevelopment && 'style-loader',
         webpackEnv.isEnvProduction && MiniCssExtractPlugin.loader,
         {
             loader: 'css-loader',
-            options: options.CssModule ? {
+            options: options.cssModule ? {
                 localsConvention: 'camelCase',
                 modules: {
                     localIdentName: '[local]--[hash:base64:6]'
@@ -54,6 +54,46 @@ const getStyleLoaders = (options, preProcessor) => {
         loaders.push(preProcessor);
     }
     return loaders;
+};
+
+/**
+ * 获取公共的 style loaders（可选择是否在项目中开启使用 less/sass）
+ * @param options
+ */
+const getStyleLoaders = (options) => {
+    options = options ? options : {
+        cssModule: false,
+    };
+    return [
+        {
+            test: styleRegex.cssRegex,
+            exclude: [styleRegex.cssModuleRegex],
+            // exclude: /node_modules/,
+            use: getBaseStyleLoaders({cssModule: options.cssModule}),
+        },
+        {
+            test: styleRegex.cssModuleRegex,
+            use: getBaseStyleLoaders({cssModule: options.cssModule}),
+        },
+        {
+            test: styleRegex.lessRegex,
+            exclude: [styleRegex.lessModuleRegex],
+            use: getBaseStyleLoaders({cssModule: options.cssModule}, 'less-loader'),
+        },
+        {
+            test: styleRegex.lessModuleRegex,
+            use: getBaseStyleLoaders({cssModule: options.cssModule}, 'less-loader'),
+        },
+        {
+            test: styleRegex.sassRegex,
+            exclude: [styleRegex.sassModuleRegex],
+            use: getBaseStyleLoaders({cssModule: options.cssModule}, 'sass-loader'),
+        },
+        {
+            test: styleRegex.sassModuleRegex,
+            use: getBaseStyleLoaders({cssModule: options.cssModule}, 'sass-loader'),
+        }
+    ];
 };
 
 module.exports = {
