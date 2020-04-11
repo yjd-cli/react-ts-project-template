@@ -5,7 +5,7 @@ const baseConfig = require('./webpack.base.config');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 // const DllReferencePlugin = require('webpack/lib/DllReferencePlugin');
 // const manifestJson = require('../public/dll/dllLibs.manifest.json');
-const styleRegex = require('./style.regex.config');
+const common = require('./common');
 
 module.exports = smart(baseConfig, {
     mode: 'development',
@@ -20,54 +20,32 @@ module.exports = smart(baseConfig, {
     module: {
         rules: [
             {
-                test: styleRegex.cssRegex,
-                exclude: [styleRegex.cssModuleRegex],
+                test: common.styleRegex.cssRegex,
+                exclude: [common.styleRegex.cssModuleRegex],
                 // exclude: /node_modules/,
-                use: ['style-loader', 'css-loader', 'postcss-loader']
+                use: common.getStyleLoaders(),
             },
             {
-                test: styleRegex.cssModuleRegex,
-                // exclude: /node_modules/,
-                use: ['style-loader',
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            importLoaders: 2,
-                            localsConvention: 'camelCase',
-                            modules: {
-                                localIdentName: '[name]__[local]--[hash:base64:5]'
-                            },
-                        }
-                    },
-                    'postcss-loader']
+                test: common.styleRegex.cssModuleRegex,
+                use: common.getStyleLoaders({CssModule: true}),
             },
             {
-                test: styleRegex.lessRegex,
-                exclude: [styleRegex.lessModuleRegex],
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    'postcss-loader',
-                    'less-loader'
-                ]
+                test: common.styleRegex.lessRegex,
+                exclude: [common.styleRegex.lessModuleRegex],
+                use: common.getStyleLoaders(null,'less-loader'),
             },
             {
-                test: styleRegex.lessModuleRegex,
-                use: [
-                    'style-loader',
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            importLoaders: 2,
-                            localsConvention: 'camelCase',
-                            modules: {
-                                localIdentName: '[name]__[local]--[hash:base64:5]'
-                            },
-                        }
-                    },
-                    'postcss-loader',
-                    'less-loader'
-                ]
+                test: common.styleRegex.lessModuleRegex,
+                use: common.getStyleLoaders({CssModule: true},'less-loader'),
+            },
+            {
+                test: common.styleRegex.sassRegex,
+                exclude: [common.styleRegex.sassModuleRegex],
+                use: common.getStyleLoaders(null,'less-loader'),
+            },
+            {
+                test: common.styleRegex.sassModuleRegex,
+                use: common.getStyleLoaders({CssModule: true},'less-loader'),
             }
         ],
     },

@@ -8,7 +8,7 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const baseConfig = require('./webpack.base.config');
-const styleRegex = require('./style.regex.config');
+const common = require('./common');
 
 module.exports = smart(baseConfig, {
     mode: 'production',
@@ -22,40 +22,33 @@ module.exports = smart(baseConfig, {
     module: {
         rules: [
             {
-                test: styleRegex.cssRegex,
-                exclude: [styleRegex.cssModuleRegex],
-                use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
+                test: common.styleRegex.cssRegex,
+                exclude: [common.styleRegex.cssModuleRegex],
+                use: common.getStyleLoaders(),
             },
             {
-                test: styleRegex.cssModuleRegex,
-                use: [MiniCssExtractPlugin.loader, {
-                    loader: 'css-loader',
-                    options: {
-                        importLoaders: 2,
-                        localsConvention: 'camelCase',
-                        modules: {
-                            localIdentName: '[name]__[local]--[hash:base64:5]'
-                        },
-                    }
-                }, 'postcss-loader'],
+                test: common.styleRegex.cssModuleRegex,
+                use: common.getStyleLoaders({CssModule:true}),
             },
             {
-                test: styleRegex.lessRegex,
-                exclude: [styleRegex.lessModuleRegex],
-                use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'less-loader']
+                test: common.styleRegex.lessRegex,
+                exclude: [common.styleRegex.lessModuleRegex],
+                // use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'less-loader']
+                use: common.getStyleLoaders(null,'less-loader'),
             },
             {
-                test: styleRegex.lessModuleRegex,
-                use: [MiniCssExtractPlugin.loader, {
-                    loader: 'css-loader',
-                    options: {
-                        localsConvention: 'camelCase',
-                        modules: {
-                            localIdentName: '[local]--[hash:base64:6]'
-                        },
-                    }
-                }, 'postcss-loader', 'less-loader']
+                test: common.styleRegex.lessModuleRegex,
+                use: common.getStyleLoaders({CssModule:true},'less-loader'),
             },
+            {
+                test: common.styleRegex.sassRegex,
+                exclude: [common.styleRegex.sassModuleRegex],
+                use: common.getStyleLoaders(null,'less-loader'),
+            },
+            {
+                test: common.styleRegex.sassModuleRegex,
+                use: common.getStyleLoaders({CssModule: true},'less-loader'),
+            }
         ],
     },
     plugins: [

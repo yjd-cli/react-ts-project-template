@@ -10,6 +10,7 @@ const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const SpeedMeasureWebpackPlugin = require('speed-measure-webpack-plugin');
 const smw = new SpeedMeasureWebpackPlugin();
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const common = require('./common');
 const htmlPlugins = require('./webpack.html.config');
 
 const config = {
@@ -85,7 +86,7 @@ const config = {
 
 // console.log(process.env.BUILD_SPEED_MEASUREMENT);
 let baseConfig = {};
-if (process.env.SPEED_MEASUREMENT) {
+if (common.webpackEnv.isEnvSpeedMeasurement) {
     // 测试每个 loader、plugin 的速度
     baseConfig = smw.wrap(baseConfig)
 } else {
