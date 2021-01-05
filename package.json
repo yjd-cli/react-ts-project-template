@@ -93,7 +93,7 @@
         "@rematch/loading": "^1.2.1",
         "@types/react-beautiful-dnd": "^12.1.2",
         "antd": "^4.0.3",
-        "axios": "^0.19.2",
+        "axios": "^0.21.1",
         "classnames": "^2.2.6",
         "connected-react-router": "^6.8.0",
         "events": "^3.1.0",
