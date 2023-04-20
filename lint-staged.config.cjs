@@ -7,6 +7,8 @@ module.exports = {
   ],
   "src/**/*.{css,less}": [
     // https://stylelint.io/user-guide/cli#options
+    // https://stylelint.io/user-guide/options/#formatter
+    // https://github.com/stylelint/stylelint/issues/703#issuecomment-339212720
     "stylelint --fix --formatter verbose",
     "prettier --write"
    ],
