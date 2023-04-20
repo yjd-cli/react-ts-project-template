@@ -2,11 +2,12 @@ module.exports = {
   "src/**/*.{js,jsx,ts,tsx}": [
    "eslint --fix",
    "prettier --write",
-  //  "git add"
+   //  "git add"
   ],
   "src/**/*.{css,less}": [
-    "prettier --write",
+    // https://stylelint.io/user-guide/cli#options
     "stylelint --fix",
+    "prettier --write",
     // "git add"
    ],
 };
