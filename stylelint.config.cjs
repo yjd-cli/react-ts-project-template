@@ -117,6 +117,7 @@ module.exports = {
   overrides: [
     {
       files: ['*.css', '**/*.css'],
+      formatter:'verbose',
       // No rules are turned on by default and there are no default values. You must explicitly configure each rule to turn it on.
       // 所有规则必须显式的进行配置，因为没有默认值。
       rules: commonRule,
@@ -125,6 +126,7 @@ module.exports = {
     {
       files: ['*.less', '**/*.less'],
       customSyntax: 'postcss-less',
+      formatter:'verbose',
       // No rules are turned on by default and there are no default values. You must explicitly configure each rule to turn it on.
       // 所有规则必须显式的进行配置，因为没有默认值。
       rules: commonRule,
