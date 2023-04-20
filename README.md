@@ -151,4 +151,41 @@ vite.base.config.ts
 待讨论：如果组件名是大写的，那么最初输出的 chunk 文件名是否保持一致（默认情况下，会保持原样）
 
 
+https://commitlint.js.org/#/concepts-commit-conventions
+在使用 git commit 命令提交代码时，提交信息应该按照一定的格式结构进行编写，以便更清晰地表达提交的内容和意图。一般来说，提交信息应该包含以下三个部分：
 
+```
+<type>(<scope>): <subject>
+
+<body>
+
+<footer>
+```
+
+其中 `<type>`是必需的，表示提交的类型，包括以下选项：
+
+- `feat`: 新功能
+- `fix`: 修复问题
+- `docs`: 文档变更
+- `style`: 代码格式（不影响代码运行的变动）
+- `refactor`: 重构（即不是新增功能，也不是修改bug的代码变动）
+- `test`: 增加测试
+- `chore`: 构建过程或辅助工具的变动
+
+`<scope>`是可选的，表示提交影响的范围。
+
+`<subject>`是必需的，简要描述提交的内容。
+
+`<body>`是可选的，更详细地描述提交的内容。
+
+`<footer>`是可选的，用于引用问题编号或关闭问题等。
+
+例如：
+
+```
+feat(login): add remember me feature
+
+Add a checkbox to the login form that allows users to save their login information for future use.
+
+Closes #1234
+```
