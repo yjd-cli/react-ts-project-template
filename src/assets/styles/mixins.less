@@ -1,0 +1,42 @@
+/* 必填项标记 */
+.mixin-required {
+  &::before {
+    display: inline-block;
+    margin-right: 4px;
+    line-height: 1;
+    color: #ff4d4f;
+    font-size: 14px;
+    font-family: SimSun, sans-serif;
+    content: '*';
+  }
+}
+
+/* 超出隐藏 */
+.mixin-text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 清除浮动 */
+.mixin-clear-fix {
+  &:after {
+    display: block;
+    clear: both;
+    visibility: hidden;
+    height: 0;
+    font-size: 0;
+    content: '';
+  }
+}
+
+/* 按钮基础样式（白底黑字，圆角灰边） */
+.mixin-basic-btn {
+  border: 1px solid rgba(217, 217, 217, 1);
+  border-radius: 4px;
+  width: 88px;
+  line-height: 30px;
+  background-color: rgba(255, 255, 255, 1);
+  text-align: center;
+  cursor: pointer;
+}

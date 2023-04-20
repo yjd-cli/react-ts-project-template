@@ -1,0 +1,20 @@
+# 目录
+dist
+build
+env
+public
+node_modules
+
+# 根目录配置文件
+.prettierignore
+.gitignore
+.eslintignore
+.editorconfig
+.npmrc
+package.json
+postcss.config.js
+prettier.config.js
+README.md
+tsconfig.json
+tsconfig.node.json
+yarn.lock

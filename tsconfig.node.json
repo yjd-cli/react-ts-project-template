@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "./config/vite.base.config.ts",
+    "./config/vite.dev.config.ts",
+    "./config/vite.prod.config.ts",
+    "./config/rollup.build.config.ts",
+  ]
+}
