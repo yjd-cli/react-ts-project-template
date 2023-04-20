@@ -1,7 +1,7 @@
 import * as path from 'path';
 import { defineConfig, ConfigEnv, splitVendorChunkPlugin } from 'vite';
 import usePluginImport from 'vite-plugin-importer';
-
+import Inspect from 'vite-plugin-inspect'
 import rollupBuildConfig from './rollup.build.config';
 // import legacy from "@vitejs/plugin-legacy";
 import viteBaseConfig from './vite.base.config';
@@ -93,6 +93,14 @@ export default defineConfig((configEnv: ConfigEnv) => {
       // legacy({
       //   targets: ["defaults", "not IE 11"],
       // }),
+
+      // https://cn.vitejs.dev/guide/api-plugin.html#authoring-a-plugin
+      // https://github.com/antfu/vite-plugin-inspect
+      // 计算每个 plugin hooks 解析和转换 url 的时间消耗，可以帮助开发定位解析较慢的 url
+      // Inspect({
+      //   build: true,
+      //   outputDir: '.vite-inspect'
+      // })
     ],
   };
 });
