@@ -157,6 +157,7 @@ vite.base.config.ts
 
 https://commitlint.js.org/#/concepts-commit-conventions
 https://juejin.cn/post/6976891381914533918
+https://juejin.cn/post/7136009620979449893
 在使用 git commit 命令提交代码时，提交信息应该按照一定的格式结构进行编写，以便更清晰地表达提交的内容和意图。一般来说，提交信息应该包含以下三个部分：
 
 ```
