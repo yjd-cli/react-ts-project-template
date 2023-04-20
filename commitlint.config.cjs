@@ -31,8 +31,21 @@ module.exports = {
     'type-enum': [
       2,
       'always',
-      // ['feat', 'fix', 'docs', 'style', 'refactor', 'test', 'revert', 'perf', 'build','ci','chore'],
-      [/^#(KYY|LFY)-\d\s.+/],
+      [
+        'feat',
+        'fix',
+        'docs',
+        'style',
+        'refactor',
+        'test',
+        'revert',
+        'perf',
+        'build',
+        'ci',
+        'chore',
+        // 使用正则匹配自定义的 commit 类型，如：'#KYY-123 fix bug'
+        /^#(KYY|LFY)-\d\s.+/,
+      ],
     ],
     'subject-case': [0, 'never'],
   },
