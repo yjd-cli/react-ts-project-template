@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-lint-staged
+# https://github.com/okonet/lint-staged#command-line-flags
+npx --no --  lint-staged --verbose

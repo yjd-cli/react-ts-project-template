@@ -4,7 +4,7 @@ module.exports = {
    "prettier --write",
   //  "git add"
   ],
-  "src/**/*.{css,.less}": [
+  "src/**/*.{css,less}": [
     "prettier --write",
     "stylelint --fix",
     // "git add"
