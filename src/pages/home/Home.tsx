@@ -9,10 +9,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { Link, Outlet } from 'react-router-dom';
 
+const aa = 666;
+
 const HomeContainer = () => {
   const [count, setCount] = useState(0);
 
   const countState = useSelector((state: RootState) => state.global.count);
+
   console.log(countState);
 
   const dispatch = useDispatch<RootDispatch>();
