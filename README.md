@@ -104,13 +104,17 @@ vite-react-ts-project-template
 
 
 ## [Git 提交信息规范](https://commitlint.js.org/#/reference-rules?id=rules)
-- feat：      新功能（feature） 
-- fix：       修补bug
-- docs：      文档（documentation）
-- style：     格式（不影响代码运行的变动）
-- refactor：  重构（即不是新增功能，也不是修改bug的代码变动）
-- test：      增加测试
-- chore：     构建过程或辅助工具的变动
+- feat => 新功能（feature）
+- fix => 修补bug
+- docs => 文档（documentation）
+- style => 格式（不影响代码运行的变动）
+- refactor => 重构（即不是新增功能，也不是修改bug的代码变动）
+- test => 增加测试文件
+- revert => 撤退之前的commit
+- perf => 性能提升（提高性能的代码改动）
+- build => 构建过程或辅助工具的变动（webpack等）
+- ci => 更改CI配置文件和脚本
+- chore => 不修改src或测试文件的其他更改
 
 
 替换 Moment.js
@@ -152,6 +156,7 @@ vite.base.config.ts
 
 
 https://commitlint.js.org/#/concepts-commit-conventions
+https://juejin.cn/post/6976891381914533918
 在使用 git commit 命令提交代码时，提交信息应该按照一定的格式结构进行编写，以便更清晰地表达提交的内容和意图。一般来说，提交信息应该包含以下三个部分：
 
 ```
@@ -189,3 +194,8 @@ Add a checkbox to the login form that allows users to save their login informati
 
 Closes #1234
 ```
+
+配置命令行提交交互
+https://juejin.cn/post/6976891381914533918#heading-30
+https://www.npmjs.com/package/@commitlint/cz-commitlint
+https://commitlint.js.org/#/reference-prompt?id=questions
