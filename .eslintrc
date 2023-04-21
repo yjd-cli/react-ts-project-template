@@ -9,7 +9,7 @@
     // https://stackoverflow.com/questions/64646248/eslintrc-js-for-react-17-and-jsx-without-import-react
     // react/jsx-runtime 适用于 React 17及以上的版本
     // "plugin:react/jsx-runtime",
-    "plugin:react-hooks/recommended"
+    // "plugin:react-hooks/recommended"
     // "plugin:prettier/recommended"
   ],
   // ESLint 默认使用Espree作为其解析器，你可以在配置文件中指定一个不同的解析器
@@ -34,7 +34,7 @@
   "plugins": [
     "@typescript-eslint",
     "react",
-    "react-hooks",
+    // "react-hooks",
     "promise"
     // "prettier"
   ],

@@ -1,7 +1,8 @@
-import './index.less';
-
 // 不要全局引入该样式，请通过按需加载的方式引入
 // import 'antd/dist/antd.css';
+import './index.less';
+
+import { InspectorWrapper } from '@src/components/inspector/InspectorWrapper';
 import { routesConfig } from '@src/routes/routes-config';
 import store from '@src/store';
 import React from 'react';
@@ -16,11 +17,13 @@ function RouteElement() {
 
 function RootContainer() {
   return (
-    <Provider store={store}>
-      <BrowserRouter>
-        <RouteElement />
-      </BrowserRouter>
-    </Provider>
+    <InspectorWrapper>
+      <Provider store={store}>
+        <BrowserRouter>
+          <RouteElement />
+        </BrowserRouter>
+      </Provider>
+    </InspectorWrapper>
   );
 }
 

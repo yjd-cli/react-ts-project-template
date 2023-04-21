@@ -1,9 +1,10 @@
-import reactSWC from '@vitejs/plugin-react-swc';
+// import reactSWC from '@vitejs/plugin-react-swc';
+import react from '@vitejs/plugin-react'
 import { defineConfig, ConfigEnv, UserConfig } from 'vite';
 import usePluginImport from 'vite-plugin-importer';
+import { inspectorServer } from 'react-dev-inspector/plugins/vite';
 
 // import { createStyleImportPlugin, AntdResolve } from 'vite-plugin-style-import';
-
 import viteBaseConfig from './vite.base.config';
 
 export default defineConfig((configEnv: ConfigEnv): UserConfig => {
@@ -93,9 +94,12 @@ export default defineConfig((configEnv: ConfigEnv): UserConfig => {
     // https://cn.vitejs.dev/guide/api-plugin.html
     plugins: [
       // https://github.com/vitejs/vite-plugin-react-swc
-      reactSWC({}),
+      // reactSWC(),
+      // 如果想要在项目中使用 react-dev-inspector 插件的话，就无法使用 vite-plugin-react-swc 编译项目，因为 react-dev-inspector 插件底层依赖 babel 编译 + 修改 AST
+      // 所以开发环境下，暂时放弃使用 SWC 编译项目
+      react(),
 
-       // 开发环境和生产环境都需要按需加载组件库样式（会自动加载当前组件需要的样式），如果开发环境不设置的话，就不会自动引入组件样式，导致页面样式错乱
+      // 开发环境和生产环境都需要按需加载组件库样式（会自动加载当前组件需要的样式），如果开发环境不设置的话，就不会自动引入组件样式，导致页面样式错乱
       // https://github.com/umijs/babel-plugin-import
       // 按需加载 ES Module
       // 以下有两种支持按需加载的 vite 插件
@@ -110,6 +114,9 @@ export default defineConfig((configEnv: ConfigEnv): UserConfig => {
       // createStyleImportPlugin({
       //   resolves: [AntdResolve()],
       // }),
+      
+      // https://github.com/zthxxx/react-dev-inspector#usage-with-vite2
+      inspectorServer(),
     ],
   };
 });
