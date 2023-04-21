@@ -1,15 +1,15 @@
 {
   "name": "vite-project-test",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
+    "build": "tsc && vite build --config ./config/vite.prod.config.ts",
+    "dev": "vite --config ./config/vite.dev.config.ts",
+    "lint": "eslint --ext .ts,.tsx,.js src",
     "prepare": "husky install",
     "preview": "vite preview",
-    "dev": "vite --config ./config/vite.dev.config.ts",
-    "type-check": "tsc --watch",
-    "lint": "eslint --ext .ts,.tsx,.js src",
-    "build": "tsc && vite build --config ./config/vite.prod.config.ts"
+    "type-check": "tsc --watch"
   },
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
@@ -64,6 +64,7 @@
     "postcss-less": "^6.0.0",
     "postcss-preset-env": "^8.3.2",
     "prettier": "^2.8.7",
+    "prettier-plugin-packagejson": "^2.4.3",
     "react-dev-inspector": "^1.8.4",
     "stylelint": "^15.5.0",
     "stylelint-order": "^6.0.3",

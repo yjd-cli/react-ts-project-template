@@ -12,4 +12,7 @@ module.exports = {
     "stylelint --fix --formatter verbose",
     "prettier --write"
    ],
+   "package.json": [
+    "prettier --write"
+   ],
 };

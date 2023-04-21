@@ -6,14 +6,21 @@ public
 node_modules
 
 # 根目录配置文件
-.prettierignore
-.gitignore
-.eslintignore
 .editorconfig
+.eslintignore
+.eslintrc
+.gitignore
 .npmrc
-package.json
-postcss.config.js
-prettier.config.js
+.prettierignore
+.stylelintignore
+commitlint.config.cjs
+lint-staged.config.cjs
+# package.json
+package-lock.json
+postcss.config.cjs
+prettier.config.cjs
+stylelint.config.cjs
+CHANGELOG.md
 README.md
 tsconfig.json
 tsconfig.node.json

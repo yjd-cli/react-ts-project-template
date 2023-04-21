@@ -200,3 +200,14 @@ Closes #1234
 https://juejin.cn/post/6976891381914533918#heading-30
 https://www.npmjs.com/package/@commitlint/cz-commitlint
 https://commitlint.js.org/#/reference-prompt?id=questions
+
+
+有性能问题了再考虑升级到 vite 高版本
+https://gist.github.com/sapphi-red/db27f9c18ed31894e409224051119e1b
+
+
+Features
+- Vite with React, TypeScript
+- 工作流
+- elsint
+- 

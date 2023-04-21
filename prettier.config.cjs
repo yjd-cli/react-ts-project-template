@@ -49,5 +49,8 @@ module.exports = {
   // 是否在上述排序规则之间换行
   importOrderSeparation: true,
   importOrderParserPlugins:[ 'classProperties', 'typescript', 'jsx', 'decorators-legacy'],
+  plugins: [
+    require("prettier-plugin-packagejson"),
+  ],
 };
 
