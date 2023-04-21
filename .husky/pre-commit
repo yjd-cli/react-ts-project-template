@@ -2,4 +2,4 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 # https://github.com/okonet/lint-staged#command-line-flags
-npx --no --  lint-staged --verbose
+npx --no-install  lint-staged --verbose
