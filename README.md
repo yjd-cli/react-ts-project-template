@@ -103,7 +103,14 @@ vite-react-ts-project-template
   - 路由组件统一使用 `export default xxx` 的形式导出，否则路由无法渲染出来
 
 
+Git commit 提交内容结构
+<type>(<scope>): <subject>
+<body>
+<footer>
+
 ## [Git 提交信息规范](https://commitlint.js.org/#/reference-rules?id=rules)
+- /^#(KYY|LFY)-\d\s.+/ => 使用正则匹配自定义的 commit 类型，如：'#KYY-123 fix bug'
+
 - feat => 新功能（feature）
 - fix => 修补bug
 - docs => 文档（documentation）
@@ -211,3 +218,8 @@ Features
 - 工作流
 - elsint
 - 
+
+
+为什么要拆分这么多份 tsconfig.json 文件
+https://github.com/typescript-eslint/typescript-eslint  单独搞个 tsconfig.eslint.json 感觉有点花里胡哨的？为什么有的TS项目会同时出现多份 tsconfig.json 文件？比如： tsconfig.build.json、 tsconfig.node.json、 tsconfig.base.json、 tsconfig.dev.json。
+答：针对使用环境的不同，严格区分配置。比如：include 这个配置项，如果项目用 typescript 直接编译输出 js，那么TS编译时，会根据 include 里设置的目录/文件去编译。如果生产环境、node、eslint 等环境的 include 放到一起，会影响编译时间+输出不想要的输出结果。

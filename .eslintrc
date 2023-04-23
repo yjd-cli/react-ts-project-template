@@ -1,46 +1,111 @@
+// https://eslint.org/docs/latest/use/configure/configuration-files#configuration-file-formats
+// 注意：ESLint 的一些规则（如：@typescript-eslint/recommended-requiring-type-checking）、插件（如：eslint-plugin-import） 和 Typescript 的功能存在重复，可以考虑优先使用 typescript
+
 {
-  "env": {
-    "browser": true,
-    "es2021": true
-  },
+  // https://eslint.org/docs/latest/use/configure/configuration-files#cascading-and-hierarchy
+  // 默认情况下。eslint 会先查找当前目录下的配置文件，然后继续搜索祖先目录中的配置文件，直至根目录。这可能会导致意外的结果，设置 "root": true 可以阻止 eslint 向上查找，以当前目录下的配置文件为准。
+  "root": true,
+
+  // 继承规则
   "extends": [
+    "eslint:recommended",
+
+    // https://typescript-eslint.io/getting-started
+    // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/recommended.ts
     "plugin:@typescript-eslint/recommended",
+
+    // https://typescript-eslint.io/linting/typed-linting
+    // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/recommended-requiring-type-checking.ts
+    // 使用 @typescript-eslint/recommended-requiring-type-checking 规则 vs 直接使用 tsc 命令 + tsconfig.json 中的规则进行校验各有优缺点，具体使用哪种方式取决你的具体需求和项目情况
+    // "plugin:@typescript-eslint/recommended-requiring-type-checking",
+
+    // https://www.npmjs.com/package/eslint-plugin-import
+    // 支持 ES2015+ (ES6+) 导入/导出语法的检查，并防止文件路径和导入名称拼写错误的问题
+    // 注意：如果使用 tsc 命令 + tsconfig.json 中的规则进行代码校验，则 eslint-plugin-import 就不需要使用了，两者功能重复了
+    // "plugin:import/recommended",
+
+    // https://www.npmjs.com/package/eslint-plugin-react
+    // react 语法校验
     "plugin:react/recommended",
     // https://stackoverflow.com/questions/64646248/eslintrc-js-for-react-17-and-jsx-without-import-react
     // react/jsx-runtime 适用于 React 17及以上的版本
     // "plugin:react/jsx-runtime",
+
+    // https://www.npmjs.com/package/eslint-plugin-react-hooks
+    // react hooks 语法校验
     // "plugin:react-hooks/recommended"
+
+    // https://www.npmjs.com/package/eslint-plugin-prettier
     // "plugin:prettier/recommended"
   ],
-  // ESLint 默认使用Espree作为其解析器，你可以在配置文件中指定一个不同的解析器
-  // https://typescript-eslint.io/architecture/parser
-  "parser": "@typescript-eslint/parser",
-  // https://typescript-eslint.io/architecture/parser#configuration
-  "parserOptions": {
-    "ecmaVersion": "latest",
-    "sourceType": "module",
-    "tsconfigRootDir": "./"
+
+  // https://eslint.org/docs/latest/use/configure/language-options#specifying-environments
+  // 指定环境
+  "env": {
+    // 支持浏览器环境
+    "browser": true,
+    // 支持解析 ECMAScript 2021
+    "es2021": true
   },
+
+  // 指定解析器
+  // ESLint 默认使用 Espree 作为其解析器，你可以在配置文件中指定一个不同的解析器
+  // https://typescript-eslint.io/architecture/parser
+  // ESLint 默认的解析无法解析 TypeScript 代码，所以需要使用 typescript-eslint 的解析器
+  "parser": "@typescript-eslint/parser",
+  // 指定解析器选项
+  // ESLint 默认的解析器配置：https://eslint.org/docs/latest/use/configure/language-options#specifying-parser-options
+  // typescript-eslint 的配置：https://typescript-eslint.io/architecture/parser#configuration
+  "parserOptions": {
+    // 使用最新支持的 ECMAScript 语法版本
+    "ecmaVersion": "latest",
+
+    // 告诉 ESLint 以 模块化的方式去解析代码
+    "sourceType": "module",
+
+    // project 和 tsconfigRootDir 属性是搭配 plugin:@typescript-eslint/recommended-requiring-type-checking 一起使用的，如果不使用 plugin:@typescript-eslint/recommended-requiring-type-checking，这两个属性就不需要配置
+    // https://typescript-eslint.io/architecture/parser#project
+    // "project": [
+    //   "./tsconfig.eslint.json"
+    // ],
+    // https://typescript-eslint.io/architecture/parser/#tsconfigrootdir
+    // 注意：如果你用编辑器（如：vscode）打开了一个目录，该目录下有很多个项目时，会导致路径解析出现问题
+    // "tsconfigRootDir": "./"
+  },
+
   "settings": {
     "react": {
-    // React version. "detect" automatically picks the version you have installed.
-    // You can also use `16.0`, `16.3`, etc, if you want to override the detected value.
-    // It will default to "latest" and warn if missing, and to "detect" in the future
+      // React version. "detect" automatically picks the version you have installed.
+      // You can also use `16.0`, `16.3`, etc, if you want to override the detected value.
+      // It will default to "latest" and warn if missing, and to "detect" in the future
       "version": "detect"
-    }
+    },
+    // "import/resolver": {
+    //   // https://www.npmjs.com/package/eslint-import-resolver-alias
+    //   // 默认情况下，eslint-plugin-import 无法识别路径别名，所以需要借助 eslint-import-resolver-alias 插件
+    //   "alias": {
+    //     "map": [
+    //       // 这里的路径别名需要和 vite.config.ts、tscofing.json 中的配置一致
+    //       ["@src", "./src"]
+    //     ],
+    //     "extensions": [".ts",".tsx",".js",".jsx",".css",".less"]
+    //   }
+    // }
   },
+
   // ESLint 支持使用第三方插件。在使用插件之前，你必须使用 npm 安装它。
   // 在配置文件里配置插件时，可以使用 plugins 关键字来存放插件名字的列表。插件名称可以省略 eslint-plugin- 前缀。 如：eslint-plugin-react
   "plugins": [
     "@typescript-eslint",
+    "import",
     "react",
     // "react-hooks",
-    "promise"
+    "promise",
     // "prettier"
   ],
-  // ESLint 附带有大量的规则。你可以使用注释或配置文件修改你项目中要使用的规则
-  // https://www.npmjs.com/package/@typescript-eslint/eslint-plugin
-  // 要改变一个规则设置，你必须将规则 ID 设置为下列值之一：
+
+  // 新增规则/覆盖基本配置中的规则
+  // 规则等级：
   // "off" 或 0 - 关闭规则
   // "warn" 或 1 - 开启规则，使用警告级别的错误：warn (不会导致程序退出)
   // "error" 或 2 - 开启规则，使用错误级别的错误：error (当被触发的时候，程序会退出)
@@ -49,14 +114,15 @@
     "@typescript-eslint/no-explicit-any": 1,
     "@typescript-eslint/no-empty-interface": 1,
     "@typescript-eslint/explicit-function-return-type": 1,
-    "react/prop-types":1,
-    "prefer-const":1,
+    "react/prop-types": 1,
+    "prefer-const": 1,
     "@typescript-eslint/ban-ts-comment": 1,
     "@typescript-eslint/ban-types": 1
     // 如果是 react 17及以上，以下规则就可以关闭了
     // "react/jsx-uses-react": 2,
     // "react/react-in-jsx-scope": 2
   },
-  "overrides": [
-  ]
+
+  // https://eslint.org/docs/latest/use/configure/configuration-files#how-do-overrides-work
+  // "overrides": []
 }

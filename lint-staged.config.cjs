@@ -12,6 +12,7 @@ module.exports = {
     "stylelint --fix --formatter verbose",
     "prettier --write"
    ],
+   // 排序 package.json 中的 keys
    "package.json": [
     "prettier --write"
    ],

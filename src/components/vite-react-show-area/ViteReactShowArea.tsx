@@ -9,6 +9,7 @@ interface ViteReactShowAreaProps {
 }
 
 const ViteReactShowArea = (props: ViteReactShowAreaProps) => {
+  // eslint-disable-next-line no-empty-pattern
   const {} = props;
   return (
     <div style={{ border: '1px solid red', padding: 20 }}>

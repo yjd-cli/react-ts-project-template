@@ -1,12 +1,12 @@
-import * as path from 'path';
-import { defineConfig, ConfigEnv, splitVendorChunkPlugin } from 'vite';
+// import * as path from 'path';
+import { defineConfig, ConfigEnv, splitVendorChunkPlugin, UserConfig } from 'vite';
 import usePluginImport from 'vite-plugin-importer';
 import Inspect from 'vite-plugin-inspect'
 import rollupBuildConfig from './rollup.build.config';
 // import legacy from "@vitejs/plugin-legacy";
 import viteBaseConfig from './vite.base.config';
 
-export default defineConfig((configEnv: ConfigEnv) => {
+export default defineConfig((configEnv: ConfigEnv):UserConfig => {
   const baseConfig = viteBaseConfig(configEnv);
 
   return {

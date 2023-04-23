@@ -1,13 +1,14 @@
 # 目录
 build
-config
+# config
 dist
 env
 node_modules
 public
-scripts
+# scripts
 .husky
 .idea
+.vscode
 .vite-inspect
 
 # 根目录配置文件
@@ -19,7 +20,7 @@ scripts
 .prettierignore
 package.json
 prettier.config.cjs
-commitlint.config.js
+commitlint.config.cjs
 stylelint.config.cjs
 lint-staged.config.cjs
 README.md

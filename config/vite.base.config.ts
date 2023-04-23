@@ -2,6 +2,7 @@
 // 像 plugins 这种特殊的配置项，因为每个插件的使用场景（开发环境、生产环境）不一致、插件执行的先后顺序要求也不一样，所以当前文件不考虑设置 plugins 配置项，各个环境对应的配置文件自行设置
 import * as path from 'path';
 import postcssPresetEnv from 'postcss-preset-env';
+import postcssNest from 'postcss-nesting';
 import { ConfigEnv, UserConfig } from 'vite';
 
 // https://vitejs.dev/config/
@@ -53,7 +54,11 @@ export default function getBaseConfig(configEnv: ConfigEnv): UserConfig {
       // https://cn.vitejs.dev/config/shared-options.html#css-postcss
       // https://juejin.cn/post/7178454300572516409
       postcss: {
-        plugins: [postcssPresetEnv()],
+        plugins: [
+          // https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-nesting
+          postcssNest(),
+          postcssPresetEnv()
+        ],
       },
 
       // https://cn.vitejs.dev/config/shared-options.html#css-preprocessoroptions

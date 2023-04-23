@@ -7,7 +7,14 @@
 //      第二位 => 是否应用规则，可选 [always | never]
 //      第三位 => rule 的具体内容
 
+// Git commit 提交内容结构
+// <type>(<scope>): <subject>
+// <body>
+// <footer>
+
 // Git 提交信息规范
+// /^#(KYY|LFY)-\d\s.+/ => 使用正则匹配自定义的 commit 类型，如：'#KYY-123 fix bug'
+
 // feat => 新功能（feature）
 // fix => 修补bug
 // docs => 文档（documentation）
@@ -19,11 +26,6 @@
 // build => 构建过程或辅助工具的变动（webpack等）
 // ci => 更改CI配置文件和脚本
 // chore => 不修改src或测试文件的其他更改
-
-// Git commit 提交内容结构
-// <type>(<scope>): <subject>
-// <body>
-// <footer>
 
 module.exports = {
   extends: ['@commitlint/config-conventional'],
