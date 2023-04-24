@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "build": "tsc && vite build --config ./config/vite.prod.config.ts",
+    "check-ts": "tsc -p tsconfig.json --noEmit",
+    "check-ts-watch": "tsc -p tsconfig.json --noEmit  --watch",
     "dev": "vite --config ./config/vite.dev.config.ts",
     "lint": "eslint --ext .ts,.tsx,.js src",
     "prepare": "husky install",
-    "preview": "vite preview",
-    "type-check": "tsc --watch"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@ant-design/icons": "~5.0.1",

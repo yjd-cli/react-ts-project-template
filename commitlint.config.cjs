@@ -1,6 +1,7 @@
 // https://commitlint.js.org/#/reference-rules?id=rules
 // https://github.com/conventional-changelog/commitlint
 // https://juejin.cn/post/6976891381914533918
+// https://mp.weixin.qq.com/s/NWMba_lN_XWnEtmFMV-4ng
 
 // rule 由 key 和 配置数组 组成，如：key: [0, 'always', 123456]
 // 数组中第一位 => 校验等级，可选 [0 | 1 | 2 ]。0 => disable，1 => warning，2 => error

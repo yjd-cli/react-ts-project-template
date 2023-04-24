@@ -1,5 +1,5 @@
 {
-  // https://www.typescriptlang.org/tsconfig
+  // https://www.typescriptlang.org/zh/docs/handbook/tsconfig-json.html
   // 注意：
   // 1、当前配置文件的配置为基础配置，被其他类型的配置文件继承使用；
   // 2、当前配置文件的配置编写顺序、类别遵循官方的排列顺序；
@@ -8,91 +8,106 @@
     /**************************** Type Checking 相关配置 ****************************/
     /**************************** Type Checking 相关配置 ****************************/
 
-    // 开启所有的严格检查配置
+    // 开启所有的严格检查配置，即所有以 strict 开头的规则都会默认开启，规则列表：【 strictBindCallApply、strictFunctionTypes、strictNullChecks、strictPropertyInitialization 】
     "strict": true,
+    // 不允许把 null、undefined 赋值给其他类型变量
+    "strictNullChecks": false,
 
     // 不允许使用隐式的 any 类型
     "noImplicitAny": false,
 
     // 不允许 this 有隐式的 any 类型，即 this 必须有明确的指向
     // "noImplicitThis": false,
-    // 不允许把 null、undefined 赋值给其他类型变量
-    "strictNullChecks": false,
 
     /****** Type Checking 中关于语法检查的配置，这种检查交给 eslint 就行，没必要配置 ******/
     /****** Type Checking 中关于语法检查的配置，这种检查交给 eslint 就行，没必要配置 ******/
     /****** Type Checking 中关于语法检查的配置，这种检查交给 eslint 就行，没必要配置 ******/
 
-    /* 有未使用到的本地变量时报错 */
+    // 有未使用到的本地变量时报错
     // "noUnusedLocals": true,
-    /* 有未使用到的函数参数时报错 */
+    // 有未使用到的函数参数时报错
     // "noUnusedParameters": true,
-    /* 每个分支都要有返回值 */
+    // 校验函数的返回值：函数必须有返回值，如果函数直接 return 的话，会报错，必须显示声明 return undefined;
     // "noImplicitReturns": true,
-    /* 严格校验 switch-case 语法 */
+    // 严格校验 switch-case 语法
     // "noFallthroughCasesInSwitch": true,
 
     /**************************** Modules 相关配置 ****************************/
     /**************************** Modules 相关配置 ****************************/
     /**************************** Modules 相关配置 ****************************/
 
-    /* 在解析非绝对路径模块名的时候的基准路径 */
+    // 在解析非绝对路径模块名的时候的基准路径
     "baseUrl": "./",
-
-    /* 基于 'baseUrl' 的路径映射集合 */
+    // 基于 'baseUrl' 的路径映射集合
     "paths": {
       /*路径映射的集合*/
       "@src/*": ["src/*"]
     },
 
-    /* 指定模块代码的生成方式: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
+    // 指定模块代码的生成方式: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'.
+    // https://www.typescriptlang.org/zh/tsconfig#module
     "module": "ESNext",
 
     // 制定模块解析策略
+    // https://www.typescriptlang.org/zh/tsconfig#moduleResolution
+    // https://www.typescriptlang.org/docs/handbook/module-resolution.html
     "moduleResolution": "Node",
 
-    /* 声明文件目录，默认 node_modules/@types */
-    // "typeRoots": [],
-
-    /* 要导入的声明文件包，默认导入上面声明文件目录下的所有声明文件 */
+    // 指定声明文件目录，默认值 "node_modules/@types"
+    // https://www.typescriptlang.org/zh/tsconfig#typeRoots
+    // 如果要设置 typeRoots，就需要把 "node_modules/@types" 带上
+    "typeRoots": ["node_modules/@types", "./src/types"],
+    // 指定要导入的声明文件包，默认导入上面声明文件目录下的所有声明文件
+    // https://www.typescriptlang.org/zh/tsconfig#types
+    // This feature differs from typeRoots in that it is about specifying only the exact types you want included, whereas typeRoots supports saying you want particular folders.
     // "types": [],
 
+    // 允许解析 json 模块
     "resolveJsonModule": true,
 
     /**************************** Emit 相关配置 ****************************/
     /**************************** Emit 相关配置 ****************************/
     /**************************** Emit 相关配置 ****************************/
 
-    /* 生成相应的类型声明文件 —— '.d.ts' */
+    // 指定输出目录
+    // 如果指定了输出目录，则 .js、.js.map、.d.ts 等文件将会被生成到该目录下
+    // 如果没有指定输出目录，则 .js、.js.map、.d.ts 等文件将被生成到和 .ts、.tsx 【源文件】相同的目录下
+    "outDir": "./dist-tsc",
+
+    // 生成相应的类型声明文件 —— '.d.ts'
     // "declaration": true,
-    /* 声明文件的输出路径 */
+    // 声明文件的输出路径
     // "declarationDir": "./d",
-    /* 只生成声明文件，不生成 JS */
+    // 只生成声明文件，不生成 JS
     // "emitDeclarationOnly": true,
+    // 生成声明文件的 sourceMap
+    // "declarationMap": true,
 
     // 不生成文件，只做类型检查
     "noEmit": true,
-
-    /* 发生错误时不输出文件 */
+    // 发生错误时不输出文件 
     // "noEmitOnError": true,
-    /* 不生成 helper 函数，以前的话设置为 true 后，需要额外安装 ts-helpers */
-    /* 类似于 babel ，会给每个文件都生成 helper 函数，会使得最终编译后的包的体积变大 */
+    // 不生成 helper 函数
+    // https://www.typescriptlang.org/zh/tsconfig#noEmitHelpers
+    // 类似于 babel，默认会给那些 使用了浏览器不支持的 API 的模块生成 helper 函数
+    // 问题：每个模块都会有一份对应的 helper 函数，代码重复，会使得最终编译后的包的体积变大。
+    // 注意：不一定需要用到 helper 函数，根据 target 值决定，如果输出的是 ES6及以上的版本，那就不需要。 
     // "noEmitHelpers": true,
-    /* 现在可以通过 tslib（TS 内置的库）引入 helper 函数，！！！文件必须是模块 ！！！ */
-    /* 编译后自动引入 var tslib_1 = require("tslib") */
+    // 从 tslib（TS 内置的库）中导入 helper 函数，！！注意：只针对模块有效 ！！
+    // https://www.typescriptlang.org/zh/tsconfig#importHelpers
+    // 编译后自动引入 import { xxx1, xxx2 } from "tslib";
     // "importHelpers": true,
-    /* 指定 ts 文件位置 */
+
+    // 指定 ts 文件位置
     // "sourceRoot": "",
-    /* 指定 map 文件存放的位置 */
+    // 指定 map 文件存放的位置
     // "mapRoot": "",
-    /* 生成目标文件的 sourceMap */
+    // 生成目标文件的 sourceMap
     // "sourceMap": true,
-    /* 将代码与sourcemaps生成到一个文件中，要求同时设置了--inlineSourceMap 或--sourceMap 属性*/
+    // 将代码与sourcemaps生成到一个文件中，要求同时设置了--inlineSourceMap 或--sourceMap 属性
     // "inlineSources": true,
-    /* 生成目标文件的 inline sourceMap —— 源文件和 sourcemap 文件在同一文件中，而不是把 map 文件放在一个单独的文件里*/
+    // 生成目标文件的 inline sourceMap —— 源文件和 sourcemap 文件在同一文件中，而不是把 map 文件放在一个单独的文件里
     // "inlineSourceMap": true,
-    /* 生成声明文件的 sourceMap */
-    // "declarationMap": true,
     // 当目标是ES5或ES3的时候提供对for-of、扩展运算符和解构赋值中对于迭代器的完整支持
     // "downlevelIteration": true,
 
@@ -100,7 +115,8 @@
     /**************************** JavaScript Support 相关配置 ****************************/
     /**************************** JavaScript Support 相关配置 ****************************/
 
-    // 是否允许编译 JS 文件
+    // 是否允许解析&编译 JS 文件
+    // TS 默认只会解析 .ts、.tsx 文件
     "allowJs": true,
 
     // 检查 JS 文件
@@ -110,37 +126,46 @@
     /**************************** Interop Constraints 相关配置 ****************************/
     /**************************** Interop Constraints 相关配置 ****************************/
 
-    /* 当没有默认导出的时候允许默认导入，这个在代码执行的时候没有作用，只是在类型检查的时候生效 */
+    // 当没有默认导出的时候允许默认导入，这个在代码执行的时候没有作用，只是在类型检查的时候生效
+    // https://www.typescriptlang.org/zh/tsconfig#allowSyntheticDefaultImports
+    // import * as React from "react";  =>  import React from "react";
     "allowSyntheticDefaultImports": true,
 
     // 允许 export = xxx 导出 ，并使用 import xxx form "module-name" 导入
+    // https://www.typescriptlang.org/zh/tsconfig#esModuleInterop
     "esModuleInterop": false,
 
-    /* 强制区分大小写 */
+    // 强制区分大小写
     "forceConsistentCasingInFileNames": true,
 
-    /* 隔离模块 */
+    // 隔离模块
+    // https://www.typescriptlang.org/zh/tsconfig#isolatedModules
+    // 如果设置了 isolatedModules = true，则需要解析的所有文件必须是模块化的（包含import/export） 
     "isolatedModules": true,
 
-    /* 不要 symlinks 解析的真正路径 */
+    // 不要 symlinks 解析的真正路径
     // "preserveSymlinks": true,
 
     /**************************** Language and Environment 相关配置 ****************************/
     /**************************** Language and Environment 相关配置 ****************************/
     /**************************** Language and Environment 相关配置 ****************************/
 
-    /* 指定 ECMAScript 的目标版本: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019' or 'ESNEXT'. */
+    // 指定 ECMAScript 的目标版本: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019' or 'ESNEXT'.
+    // https://www.typescriptlang.org/zh/tsconfig#target
     "target": "ESNext",
 
-    // 指定要包含在编译中的库文件（引用类库，即申明文件），如果输出的模块方式是 es5，就会默认引入 "dom","es5","scripthost"。如果在 TS 中想要使用一些 ES6 以上版本的语法，就需要引入相关的类库
+    // 指定要包含在编译中的类型定义（TS 内置的类型定义）
+    // 如果输出的模块方式是 es5，就会默认引入 "dom","es5","scripthost"。
+    // 如果在 TS 中想要使用一些 ES6 以上版本的语法，就需要引入相关的类库
+    // https://www.typescriptlang.org/zh/tsconfig#lib
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
 
     // https://www.typescriptlang.org/tsconfig#jsx
     // "preserve", "react", "react-jsx", "react-jsxdev", "react-native"
-    /* react => 直接将 JSX 编译成 JS，会生成 React.createElement 的形式，在使用前不需要再进行转换操作了，输出文件的扩展名为 .js */
-    /* react-jsx => 适用于【React 17及以上的版本】，直接将 JSX 编译成 JS，会使用 react/jsx-runtime 提供的 jsx 方法，而不是 React.createElement，输出文件的扩展名为 .js */
-    /* preserve => 不会将 JSX 编译成 JS，生成代码中会保留 JSX，以供后续的转换操作使用(比如：Babel)。输出文件的扩展名为 .jsx  */
-    /* react-native => 相当于 preserve，它也保留了所有的 JSX，但是输出文件的扩展名为 .js */
+    // react => 直接将 JSX 编译成 JS，会生成 React.createElement 的形式，在使用前不需要再进行转换操作了，输出文件的扩展名为 .js
+    // react-jsx => 适用于【React 17及以上的版本】，直接将 JSX 编译成 JS，会使用 react/jsx-runtime 提供的 jsx 方法，而不是 React.createElement，输出文件的扩展名为 .js
+    // preserve => 不会将 JSX 编译成 JS，生成代码中会保留 JSX，以供后续的转换操作使用(比如：Babel)。输出文件的扩展名为 .jsx
+    // react-native => 相当于 preserve，它也保留了所有的 JSX，但是输出文件的扩展名为 .js
     "jsx": "react",
 
     // 启用装饰器
@@ -155,9 +180,9 @@
 
     // 打印诊断信息
     // "diagnostics": true,
-    /* 打印输出的文件 */
+    // 打印输出的文件
     // "listEmittedFiles": true,
-    /* 打印编译的文件（包括引用的声明文件）*/
+    // 打印编译的文件（包括引用的声明文件）
     // "listFiles": true,
 
     /**************************** Projects 相关配置 ****************************/
@@ -177,22 +202,31 @@
     /**************************** Completeness 相关配置 ****************************/
     /**************************** Completeness 相关配置 ****************************/
 
-    /* 跳过声明文件的类型检查 */
+    // 跳过声明文件的类型检查
+    // https://www.typescriptlang.org/zh/tsconfig#skipLibCheck
     // Rather than doing a full check of all d.ts files, TypeScript will type check the code you specifically refer to in your app’s source code.
     "skipLibCheck": true
   },
 
-  /* 指定需要编译的单个文件列表 */
+  // 指定需要编译的单个文件列表
   // "files": [],
 
-  /* 指定需要编译的文件/目录 */
+  // 指定需要编译的文件/目录
+  // https://www.typescriptlang.org/zh/tsconfig#include
   // "include": [
-  //   // 只写一个目录名等价于 "./src/**/*"
-  //   "src",
+    // 1、需要编译的文件/目录路径 相对于 当前 tsconfig.json 文件所在位置 去设置  
+    // 2、If a glob pattern doesn’t include a file extension, then only files with supported extensions are included (e.g. .ts, .tsx, and .d.ts by default, with .js and .jsx if allowJs is set to true).
+    // 常用的通配符 ：【** => 匹配任意层级的目录】【* => 匹配任意文件】
+    // "src", // 只写一个目录名等价于 "./src/**/*"
   // ],
 
-  /* 指定需要排除的文件或目录 */
+  // 指定【上述 include 设置的目录中】需要排除的文件或目录
+  // https://www.typescriptlang.org/zh/tsconfig#exclude
+  // 注意：
+  // 1、exclude 字段是基于 include 字段设置的；
+  // 2、即使你排除了某个模块，但只要你的代码里用到了该模块，TS 依然会去解析/校验该模块；
   // "exclude": [],
   
+  // https://www.typescriptlang.org/docs/handbook/project-references.html
   // "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -1,8 +1,8 @@
 {
   "extends": "./tsconfig.base.json",
-  "compilerOptions": {},
   "include": [
     // 只写一个目录名等价于 "./src/**/*"
     "src",
   ],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

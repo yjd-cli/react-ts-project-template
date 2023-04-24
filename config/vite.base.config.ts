@@ -38,8 +38,6 @@ export default function getBaseConfig(configEnv: ConfigEnv): UserConfig {
       // 默认： ['.mjs', '.js', '.mts', '.ts', '.jsx', '.tsx', '.json']
       // 这里不添加 '.css'、'.less'、'.json'的原因：在一个模块中同时引入了很多模块时，还是需要快速区分下哪些是样式模块
       extensions: ['.js', '.ts', '.jsx', '.tsx'],
-      // npm 依赖去重
-      // dedupe: [],
     },
 
     css: {

@@ -6,7 +6,7 @@ import rollupBuildConfig from './rollup.build.config';
 // import legacy from "@vitejs/plugin-legacy";
 import viteBaseConfig from './vite.base.config';
 
-export default defineConfig((configEnv: ConfigEnv):UserConfig => {
+export default defineConfig((configEnv: ConfigEnv): UserConfig => {
   const baseConfig = viteBaseConfig(configEnv);
 
   return {
@@ -69,11 +69,12 @@ export default defineConfig((configEnv: ConfigEnv):UserConfig => {
       },
     },
 
+
     // https://cn.vitejs.dev/guide/api-plugin.html
     plugins: [
       // https://cn.vitejs.dev/guide/build.html#chunking-strategy
       // splitVendorChunkPlugin(),
-
+      
       // 开发环境和生产环境都需要按需加载组件库样式（会自动加载当前组件需要的样式），如果开发环境不设置的话，就不会自动引入组件样式，导致页面样式错乱
       // https://github.com/umijs/babel-plugin-import
       // 按需加载 ES Module
