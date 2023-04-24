@@ -32,6 +32,7 @@ export default function getBaseConfig(configEnv: ConfigEnv): UserConfig {
     // mode: 'development',
 
     resolve: {
+      // alias 别名配置不仅在 JavaScript 的 import 语句中生效，在 CSS 代码的 @import 和 url导入语句中也同样生效
       alias: {
         '@src': path.resolve('src'),
       },

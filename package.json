@@ -4,13 +4,15 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsc && vite build --config ./config/vite.prod.config.ts",
+    "build": "npm-run-all check-ts build-dist",
+    "build-dist": "vite build --config ./config/vite.prod.config.ts",
     "check-ts": "tsc -p tsconfig.json --noEmit",
     "check-ts-watch": "tsc -p tsconfig.json --noEmit  --watch",
     "dev": "vite --config ./config/vite.dev.config.ts",
     "lint": "eslint --ext .ts,.tsx,.js src",
-    "prepare": "husky install",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "preinstall": "[ -f ./scripts/npm-hooks/preinstall.js ] && node ./scripts/npm-hooks/preinstall.js || true",
+    "check": "npm-run-all -p check-ts lint"
   },
   "dependencies": {
     "@ant-design/icons": "~5.0.1",
@@ -63,6 +65,7 @@
     "eslint-plugin-react-hooks": "~4.6.0",
     "husky": "~8.0.3",
     "lint-staged": "~13.2.1",
+    "npm-run-all": "~4.1.5",
     "postcss-less": "~6.0.0",
     "postcss-nesting": "~11.2.2",
     "postcss-preset-env": "~8.3.2",
