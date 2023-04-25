@@ -10,9 +10,16 @@
     "check-ts-watch": "tsc -p tsconfig.json --noEmit  --watch",
     "dev": "vite --config ./config/vite.dev.config.ts",
     "lint": "eslint --ext .ts,.tsx,.js src",
+    "lint-fix": "eslint --ext .ts,.tsx,.js src --fix",
     "preview": "vite preview",
     "preinstall": "[ -f ./scripts/npm-hooks/preinstall.js ] && node ./scripts/npm-hooks/preinstall.js || true",
-    "check": "npm-run-all -p check-ts lint"
+    "check": "npm-run-all -p check-ts lint",
+    "commit": "git-cz"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git"
+    }
   },
   "dependencies": {
     "@ant-design/icons": "~5.0.1",
@@ -43,6 +50,7 @@
   "devDependencies": {
     "@commitlint/cli": "~17.6.1",
     "@commitlint/config-conventional": "~17.6.1",
+    "@commitlint/cz-commitlint": "~17.5.0",
     "@trivago/prettier-plugin-sort-imports": "~4.1.1",
     "@types/lodash-es": "~4.17.7",
     "@types/node": "~18.15.11",
@@ -55,9 +63,12 @@
     "@vitejs/plugin-legacy": "~4.0.2",
     "@vitejs/plugin-react": "~4.0.0",
     "@vitejs/plugin-react-swc": "~3.0.0",
+    "commitizen": "~4.3.0",
+    "cz-git": "~1.6.1",
     "eslint": "~8.38.0",
     "eslint-config-prettier": "~8.8.0",
     "eslint-import-resolver-alias": "~1.1.2",
+    "eslint-import-resolver-typescript": "~3.5.5",
     "eslint-plugin-import": "~2.27.5",
     "eslint-plugin-prettier": "~4.2.1",
     "eslint-plugin-promise": "~6.1.1",

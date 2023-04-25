@@ -39,6 +39,8 @@ module.exports = {
     '<THIRD_PARTY_MODULES>',
     // 二方 npm 依赖
     '^@ngiq/(.+)',
+    // 路径别名
+    '^@src/(.+)',
     // 本地依赖—组件
     '^\.(.+)\.(jsx|tsx)$',
     // 本地依赖—脚本
@@ -46,11 +48,10 @@ module.exports = {
     // 其他，这个兜底的值必填
     '^[./]',
   ],
-
   // 是否在上述排序规则之间换行
   importOrderSeparation: true,
   importOrderParserPlugins: ['classProperties', 'typescript', 'jsx', 'decorators-legacy'],
-  
+
   plugins: [
     // https://github.com/matzkoh/prettier-plugin-packagejson
     // A Prettier plugin to sort the keys of a package.json file using sort-package-json.
