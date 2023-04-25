@@ -141,17 +141,18 @@ ngiq-frontend-template-web
 | Commit 类型        | 类型描述                                |
 |------------------|-------------------------------------|
 | `/^#KYY-\d\s.+/` | 自定义的 commit 类型，如：'#KYY-123 fix bug' |
-| feat             | 新功能（feature）                        |
-| fix              | 修补 bug                              |
-| docs             | 文档（documentation）                   |
-| style            | 格式（不影响代码运行的变动）                      |
-| refactor         | 重构（即不是新增功能，也不是修改bug的代码变动）           |
-| test             | 增加测试文件                              |
-| revert           | 撤退之前的 commit                        |
-| perf             | 性能提升（提高性能的代码改动）                     |
-| build            | 构建过程或辅助工具的变动（webpack等）              |
-| ci               | 更改 CI 配置文件和脚本                       |
-| chore            | 不修改 src 或测试文件的其他更改                  |
+| `/^#LFY-\d\s.+/` | 自定义的 commit 类型，如：'#LFY-123 fix bug' |
+| feat             | 新特性/功能                              |
+| fix              | 修复 bug                              |
+| docs             | 修改文档                                |
+| style            | 代码格式化（不影响代码运行的变动）                   |
+| refactor         | 重构（即不是新增功能，也不是修复 bug 的代码改动）         |
+| perf             | 性能优化（提高性能的代码改动）             |
+| test             | 测试文件改动                           |
+| build            | 构建配置改动（如：vite.config.ts）           |
+| ci               | CI/CD 配置或者 scripts 脚本改动                |
+| chore            | 其他改动（如：不修改 src 目录下的文件内容或测试文件的改动）              |
+| revert           | 撤销某次 commit                     |
 
 
 ### Git Commit 结构
@@ -198,11 +199,12 @@ ngiq-frontend-template-web
   - https://cn.vitejs.dev/guide/#index-html-and-project-root
   - https://cn.vitejs.dev/guide/build.html#multi-page-app
 - package.json 中设置了 `"type": "module"`，表示当前项目使用 `ES Modules（ESM）`模块系统，即在 `ESM` 中，需要使用 `import` 和 `export` 关键字来导入/导出模块，不能再用 `require/module.exports`。
+- `git commit`前，可以通过执行 `npm run commit`，选择对应的提交类型
 
 
 ## 未来计划
-- 配置 `Git Commit` 命令行交互提示
-  - https://juejin.cn/post/6976891381914533918#heading-30
-  - https://www.npmjs.com/package/@commitlint/cz-commitlint
-  - https://commitlint.js.org/#/reference-prompt?id=questions
+- 支持主题色切换
+- 支持前端监控
+- 新增通用场景的页面（如：登录页、关于我们页等等），业务项目只需要稍微修改下，就能快速开发完成
+- 自动生成 changelog
 - 更新 `Vite` 至最新版本
