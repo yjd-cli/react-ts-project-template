@@ -10,7 +10,7 @@ ngiq-frontend-template-web
   ├── .husky                        # 存放 git hooks
   │   ├── commit-msg                # git commit 时触发
   │   ├── pre-commit                # git commit 前触发
-  ├── build                         # vite 构建配置
+  ├── config                        # vite 构建配置
   │   ├── rollup.build.config.ts    # rollup 配置文件
   │   ├── vite.base.config.ts       # vite 基础配置文件
   │   ├── vite.dev.config.ts        # vite 开发环境配置文件
@@ -18,7 +18,7 @@ ngiq-frontend-template-web
   ├── env                           # vite 项目环境变量
   ├── public                        # 公共静态资源文件目录
   │   └── vite.svg
-  ├── scripts                       # 项目构建脚本
+  ├── scripts                       # 存储项目CI、npm hooks、上传等脚本
   ├── .editorconfig                 # 编辑器风格配置文件
   ├── .eslintignore                 # eslint 忽略校验配置文件
   ├── .eslintrc                     # eslint 校验配置文件
