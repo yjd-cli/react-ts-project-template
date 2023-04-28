@@ -1,7 +1,8 @@
 import * as path from 'path';
+import { BuildOptions } from 'vite';
 
 // https://cn.rollupjs.org/configuration-options/
-export default {
+const buildConfig: BuildOptions['rollupOptions'] = {
   input: {
     // index.html 与项目根目录：https://cn.vitejs.dev/guide/#index-html-and-project-root
     // index.html 必须放在项目根目录下
@@ -88,3 +89,5 @@ export default {
     // }
   },
 };
+
+export default buildConfig;
